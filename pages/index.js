@@ -103,7 +103,21 @@ function HomePage() {
 		});
 		setLoading(true);
 		setOpen(false);
-		setMessage('Berhasil Menambahkan Komoditi');
+		setMessage('Berhasil menambahkan komoditas');
+		setOpenSnakBar(true);
+		fetchData();
+	};
+
+	const onDeleteItem = async (uuid, name) => {
+		const response = await fetch(`/api/commodities/${uuid}`, {
+			method: 'DELETE',
+		});
+
+		if (!response.ok) {
+			setLoading(false);
+			setMessage('Terjadi kesalahan');
+		}
+		setMessage(`Berhasil hapus komoditas ${name}`);
 		setOpenSnakBar(true);
 		fetchData();
 	};
@@ -140,6 +154,7 @@ function HomePage() {
 						data={data}
 						columns={columns}
 						handleOpenModal={onAddCommodity}
+						onDeleteItem={onDeleteItem}
 					/>
 				</Grid>
 			</Container>

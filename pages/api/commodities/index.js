@@ -50,7 +50,7 @@ export default async (request, response) => {
 				return resp.json();
 			})
 			.then((data) => {
-				return response.status(200).json(data);
+				return response.status(201).json(data);
 			})
 			.catch((error) => {
 				return response.status(500).json(error);

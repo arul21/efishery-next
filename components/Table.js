@@ -18,7 +18,12 @@ import { Delete, Edit } from '@mui/icons-material';
 import moment from 'moment';
 import { isIsoDate, currencyConvert } from '../helpers';
 
-export default function StickyHeadTable({ data, columns, handleOpenModal }) {
+export default function StickyHeadTable({
+	data,
+	columns,
+	handleOpenModal,
+	onDeleteItem,
+}) {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(20);
 	const [rootData, setRootData] = useState(data);
@@ -151,7 +156,12 @@ export default function StickyHeadTable({ data, columns, handleOpenModal }) {
 																		<IconButton aria-label='update'>
 																			<Edit />
 																		</IconButton>
-																		<IconButton aria-label='delete'>
+																		<IconButton
+																			aria-label='delete'
+																			onClick={() =>
+																				onDeleteItem(row.uuid, row.komoditas)
+																			}
+																		>
 																			<Delete />
 																		</IconButton>
 																	</>
@@ -169,6 +179,7 @@ export default function StickyHeadTable({ data, columns, handleOpenModal }) {
 												<TableRow tabIndex={-1} key={i}>
 													{columns.map((column) => {
 														const value = row[column.id];
+
 														return (
 															<>
 																<TableCell key={column.id} align={column.align}>
@@ -182,7 +193,12 @@ export default function StickyHeadTable({ data, columns, handleOpenModal }) {
 																			<IconButton aria-label='update'>
 																				<Edit />
 																			</IconButton>
-																			<IconButton aria-label='delete'>
+																			<IconButton
+																				aria-label='delete'
+																				onClick={() =>
+																					onDeleteItem(row.uuid, row.komoditas)
+																				}
+																			>
 																				<Delete />
 																			</IconButton>
 																		</>
