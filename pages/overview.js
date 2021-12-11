@@ -103,7 +103,7 @@ const Overview = () => {
 					justifyContent='center'
 					style={{ minHeight: '100vh' }}
 				>
-					<h1>Chart Komoditi</h1>
+					<h1>Chart Commodity</h1>
 
 					<Doughnut data={data} />
 				</Grid>

@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-	Container,
-	CircularProgress,
-	Grid,
-	Backdrop,
-	Alert,
-	Snackbar,
-} from '@mui/material';
+import { Container, Grid, Alert, Snackbar } from '@mui/material';
 import { Navbar, Table, AddCommodityModal } from '../components';
 import { columns } from '../constants';
 import moment from 'moment';
@@ -152,15 +145,10 @@ function HomePage() {
 						{message}
 					</Alert>
 				</Snackbar>
-				{/* <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={loading}
-        >
-          <CircularProgress color='inherit' />
-        </Backdrop> */}
-				<Grid container spacing={0} style={{ paddingTop: 45 }}>
+
+				<Grid container spacing={0} style={{ paddingTop: 25 }}>
 					<Grid container justifyContent='center' style={{ paddingBottom: 4 }}>
-						<h1> List Harga Komoditi Ikan</h1>
+						<h1>Price List Commodity</h1>
 					</Grid>
 					<Table
 						data={data}

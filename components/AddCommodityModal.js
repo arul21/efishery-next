@@ -41,13 +41,13 @@ export default function AddCommodityModal({
 		>
 			<Box sx={style}>
 				<Typography id='modal-modal-title' variant='h6' component='h2'>
-					Tambah Komoditi
+					Add Commodity
 				</Typography>
 				<div style={{ marginTop: 15 }}>
 					<TextField
 						id='outlined-uncontrolled'
 						size='small'
-						label='Komoditas'
+						label='Commodity'
 						variant='outlined'
 						name='komoditas'
 						fullWidth
@@ -58,7 +58,7 @@ export default function AddCommodityModal({
 					<TextField
 						id='outlined-uncontrolled'
 						size='small'
-						label='Harga'
+						label='Price'
 						name='price'
 						variant='outlined'
 						fullWidth
@@ -88,7 +88,7 @@ export default function AddCommodityModal({
 					<TextField
 						id='outlined-uncontrolled'
 						select
-						label='Area Kota'
+						label='City'
 						fullWidth
 						size='small'
 						name='area_kota'
@@ -106,7 +106,7 @@ export default function AddCommodityModal({
 					<TextField
 						id='outlined-uncontrolled'
 						size='small'
-						label='Area Provinsi'
+						label='Province'
 						variant='outlined'
 						fullWidth
 						value={area_provinsi}
@@ -114,7 +114,7 @@ export default function AddCommodityModal({
 					/>
 				</div>
 				<Button variant='contained' onClick={onSubmit}>
-					Simpan
+					Save
 				</Button>
 			</Box>
 		</Modal>

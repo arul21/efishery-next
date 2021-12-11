@@ -98,7 +98,7 @@ export default function StickyHeadTable({
 			<Grid container spacing={2}>
 				<Grid item xs={5}>
 					<Button variant='contained' onClick={handleOpenModal}>
-						Tambah Komoditi
+						Add Commodity
 					</Button>
 				</Grid>
 				<Grid item xs={2} justifyContent='flex-end'></Grid>
@@ -106,14 +106,21 @@ export default function StickyHeadTable({
 					<TextField
 						size='small'
 						id='commodity-search'
-						label='Pencarian'
+						label='Search'
 						type='search'
 						fullWidth
 						onChange={(e) => searchItems(e.target.value)}
 					/>
 				</Grid>
 			</Grid>
-			<Paper sx={{ width: '100%', overflow: 'hidden', marginTop: 3 }}>
+			<Paper
+				sx={{
+					width: '100%',
+					overflow: 'hidden',
+					marginTop: 3,
+					marginBottom: 10,
+				}}
+			>
 				<TableContainer sx={{ maxHeight: 650 }}>
 					<Table stickyHeader aria-label='sticky table'>
 						<TableHead>

@@ -52,7 +52,7 @@ const ResponsiveAppBar = () => {
 						<Link href={`${isRoot ? '/overview' : '/'}`}>
 							<Button variant='text' color='inherit'>
 								<Typography textAlign='center'>
-									{isRoot ? 'Overview Data' : 'Home'}
+									{isRoot ? 'Summary Data' : 'Home'}
 								</Typography>
 							</Button>
 						</Link>
