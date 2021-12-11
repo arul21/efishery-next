@@ -1,5 +1,4 @@
 import { baseUrl } from '../../../constants';
-import { generateUUID } from '../../../helpers';
 
 export default async (request, response) => {
 	const {

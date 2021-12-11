@@ -1,4 +1,5 @@
 import { baseUrl } from '../../../constants';
+
 export default async (request, response) => {
 	const { method } = request;
 
@@ -9,6 +10,9 @@ export default async (request, response) => {
 			})
 			.then((data) => {
 				return response.status(200).json(data);
+			})
+			.catch((error) => {
+				return response.status(500).json(error);
 			});
 	}
 };
