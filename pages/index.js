@@ -21,6 +21,7 @@ function HomePage() {
 	const [sizeData, setSizeData] = useState([]);
 	const [areas, setAreas] = useState([]);
 	const [message, setMessage] = useState('');
+	const [isUpdate, setIsUpdate] = useState(false);
 	const [state, setState] = useState({
 		komoditas: '',
 		size: '',
@@ -51,6 +52,8 @@ function HomePage() {
 
 	const onAddCommodity = async () => {
 		setOpen(true);
+		setIsUpdate(false);
+		resetState();
 		const responseSize = await fetch('/api/size');
 		const responseArea = await fetch('/api/area');
 		const [resultSize, resultArea] = await Promise.all([
@@ -84,7 +87,7 @@ function HomePage() {
 	const onSubmit = async () => {
 		setLoading(true);
 		const response = await fetch('/api/commodities', {
-			method: 'POST',
+			method: isUpdate ? 'PUT' : 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
@@ -94,6 +97,15 @@ function HomePage() {
 			setLoading(false);
 			setMessage('Terjadi kesalahan');
 		}
+		resetState();
+		setLoading(true);
+		setOpen(false);
+		setMessage(`Berhasil ${isUpdate ? 'update' : 'menambahkan'}  komoditas`);
+		setOpenSnakBar(true);
+		fetchData();
+	};
+
+	const resetState = () => {
 		setState({
 			komoditas: '',
 			size: '',
@@ -101,11 +113,6 @@ function HomePage() {
 			area_provinsi: '',
 			area_kota: '',
 		});
-		setLoading(true);
-		setOpen(false);
-		setMessage('Berhasil menambahkan komoditas');
-		setOpenSnakBar(true);
-		fetchData();
 	};
 
 	const onDeleteItem = async (uuid, name) => {
@@ -122,10 +129,15 @@ function HomePage() {
 		fetchData();
 	};
 
+	const onUpdateItem = async (item) => {
+		onAddCommodity();
+		setIsUpdate(true);
+		setState(item);
+	};
+	// console.log(state);
 	return (
 		<>
 			<Navbar />
-
 			<Container maxWidth='xl'>
 				<Snackbar
 					open={openSnackBar}
@@ -155,6 +167,7 @@ function HomePage() {
 						columns={columns}
 						handleOpenModal={onAddCommodity}
 						onDeleteItem={onDeleteItem}
+						onUpdateItem={onUpdateItem}
 					/>
 				</Grid>
 			</Container>

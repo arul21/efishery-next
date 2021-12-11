@@ -23,6 +23,7 @@ export default function StickyHeadTable({
 	columns,
 	handleOpenModal,
 	onDeleteItem,
+	onUpdateItem,
 }) {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(20);
@@ -153,8 +154,12 @@ export default function StickyHeadTable({
 																	: value}
 																{column.id === 'action' && (
 																	<>
-																		<IconButton aria-label='update'>
+																		<IconButton
+																			aria-label='update'
+																			onClick={() => onUpdateItem(row)}
+																		>
 																			<Edit />
+																			onUpdateItem
 																		</IconButton>
 																		<IconButton
 																			aria-label='delete'
@@ -181,30 +186,31 @@ export default function StickyHeadTable({
 														const value = row[column.id];
 
 														return (
-															<>
-																<TableCell key={column.id} align={column.align}>
-																	{isIsoDate(value)
-																		? moment(value).format('LL')
-																		: column.id === 'price'
-																		? currencyConvert(value)
-																		: value}
-																	{column.id === 'action' && (
-																		<>
-																			<IconButton aria-label='update'>
-																				<Edit />
-																			</IconButton>
-																			<IconButton
-																				aria-label='delete'
-																				onClick={() =>
-																					onDeleteItem(row.uuid, row.komoditas)
-																				}
-																			>
-																				<Delete />
-																			</IconButton>
-																		</>
-																	)}
-																</TableCell>
-															</>
+															<TableCell key={column.id} align={column.align}>
+																{isIsoDate(value)
+																	? moment(value).format('LL')
+																	: column.id === 'price'
+																	? currencyConvert(value)
+																	: value}
+																{column.id === 'action' && (
+																	<>
+																		<IconButton
+																			aria-label='update'
+																			onClick={() => onUpdateItem(row)}
+																		>
+																			<Edit />
+																		</IconButton>
+																		<IconButton
+																			aria-label='delete'
+																			onClick={() =>
+																				onDeleteItem(row.uuid, row.komoditas)
+																			}
+																		>
+																			<Delete />
+																		</IconButton>
+																	</>
+																)}
+															</TableCell>
 														);
 													})}
 												</TableRow>

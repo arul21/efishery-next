@@ -25,7 +25,6 @@ export default async (request, response) => {
 		const {
 			body: { komoditas, size, price, area_provinsi, area_kota },
 		} = request;
-
 		const newData = [
 			{
 				uuid: uid,
@@ -38,7 +37,6 @@ export default async (request, response) => {
 				timestamp: Math.floor(Date.now() / 1000),
 			},
 		];
-
 		fetch(`${baseUrl}/list`, {
 			method: 'POST',
 			headers: {
@@ -51,6 +49,41 @@ export default async (request, response) => {
 			})
 			.then((data) => {
 				return response.status(201).json(data);
+			})
+			.catch((error) => {
+				return response.status(500).json(error);
+			});
+	}
+
+	if (method === 'PUT') {
+		const {
+			body: { uuid, komoditas, size, price, area_provinsi, area_kota },
+		} = request;
+		const newData = {
+			condition: {
+				uuid: uuid,
+			},
+			set: {
+				komoditas,
+				size: Number(size),
+				price: Number(price),
+				area_provinsi,
+				area_kota: area_kota.city,
+			},
+		};
+
+		fetch(`${baseUrl}/list`, {
+			method: 'PUT',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(newData),
+		})
+			.then((resp) => {
+				return resp.json();
+			})
+			.then((data) => {
+				return response.status(20).json(data);
 			})
 			.catch((error) => {
 				return response.status(500).json(error);

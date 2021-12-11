@@ -30,7 +30,6 @@ export default function AddCommodityModal({
 	onChange,
 	areaData,
 	onSubmit,
-	loading,
 }) {
 	const { komoditas, size, price, area_provinsi, area_kota } = inputData;
 	return (
