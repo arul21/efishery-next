@@ -12,12 +12,13 @@ import {
 	TextField,
 	TableSortLabel,
 	Button,
-	Item,
+	IconButton,
 } from '@mui/material/';
+import { Delete, Edit } from '@mui/icons-material';
 import moment from 'moment';
 import { isIsoDate, currencyConvert } from '../helpers';
 
-export default function StickyHeadTable({ data, columns }) {
+export default function StickyHeadTable({ data, columns, handleOpenModal }) {
 	const [page, setPage] = useState(0);
 	const [rowsPerPage, setRowsPerPage] = useState(20);
 	const [rootData, setRootData] = useState(data);
@@ -90,7 +91,9 @@ export default function StickyHeadTable({ data, columns }) {
 		<>
 			<Grid container spacing={2}>
 				<Grid item xs={5}>
-					<Button variant='contained'>Tambah Komoditi</Button>
+					<Button variant='contained' onClick={handleOpenModal}>
+						Tambah Komoditi
+					</Button>
 				</Grid>
 				<Grid item xs={2} justifyContent='flex-end'></Grid>
 				<Grid item xs={5}>
@@ -143,6 +146,16 @@ export default function StickyHeadTable({ data, columns }) {
 																	: column.id === 'price'
 																	? currencyConvert(value)
 																	: value}
+																{column.id === 'action' && (
+																	<>
+																		<IconButton aria-label='update'>
+																			<Edit />
+																		</IconButton>
+																		<IconButton aria-label='delete'>
+																			<Delete />
+																		</IconButton>
+																	</>
+																)}
 															</TableCell>
 														);
 													})}
@@ -157,13 +170,25 @@ export default function StickyHeadTable({ data, columns }) {
 													{columns.map((column) => {
 														const value = row[column.id];
 														return (
-															<TableCell key={column.id} align={column.align}>
-																{isIsoDate(value)
-																	? moment(value).format('LL')
-																	: column.id === 'price'
-																	? currencyConvert(value)
-																	: value}
-															</TableCell>
+															<>
+																<TableCell key={column.id} align={column.align}>
+																	{isIsoDate(value)
+																		? moment(value).format('LL')
+																		: column.id === 'price'
+																		? currencyConvert(value)
+																		: value}
+																	{column.id === 'action' && (
+																		<>
+																			<IconButton aria-label='update'>
+																				<Edit />
+																			</IconButton>
+																			<IconButton aria-label='delete'>
+																				<Delete />
+																			</IconButton>
+																		</>
+																	)}
+																</TableCell>
+															</>
 														);
 													})}
 												</TableRow>
