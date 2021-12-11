@@ -4,22 +4,22 @@ Preview https://efishery-next.vercel.app/
 
 ### Usage
 
-```javascript
+```bash
 git clone https://github.com/arul21/efishery-next.git
 ```
 
-```javascript
+```bash
 yarn install
-or
+# or
 npm install
 ```
 
 Runs the app in the development mode
 
-```javascript
+```bash
 yarn dev
-or
+# or
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [localhost](http://localhost:3000) to view it in the browser.

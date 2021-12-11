@@ -159,7 +159,6 @@ export default function StickyHeadTable({
 																			onClick={() => onUpdateItem(row)}
 																		>
 																			<Edit />
-																			onUpdateItem
 																		</IconButton>
 																		<IconButton
 																			aria-label='delete'

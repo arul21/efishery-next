@@ -6,9 +6,14 @@ import {
 	Typography,
 	Container,
 	Avatar,
+	Button,
 } from '@mui/material';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const ResponsiveAppBar = () => {
+	const router = useRouter();
+	const isRoot = router.asPath === '/';
 	return (
 		<AppBar position='static'>
 			<Container maxWidth='xl'>
@@ -42,6 +47,15 @@ const ResponsiveAppBar = () => {
 						>
 							Commodity Dashboard
 						</Typography>
+					</Box>
+					<Box sx={{ flexGrow: 0 }}>
+						<Link href={`${isRoot ? '/overview' : '/'}`}>
+							<Button variant='text' color='inherit'>
+								<Typography textAlign='center'>
+									{isRoot ? 'Overview Data' : 'Home'}
+								</Typography>
+							</Button>
+						</Link>
 					</Box>
 				</Toolbar>
 			</Container>

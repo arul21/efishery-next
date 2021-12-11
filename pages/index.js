@@ -134,7 +134,7 @@ function HomePage() {
 		setIsUpdate(true);
 		setState(item);
 	};
-	// console.log(state);
+
 	return (
 		<>
 			<Navbar />
