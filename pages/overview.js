@@ -21,9 +21,7 @@ const Overview = () => {
 			setDataCommodity([]);
 		}
 		const commodities = await response.json();
-
 		getDataProvinsi(commodities);
-
 		return setDataCommodity(
 			commodities &&
 				commodities.filter((value) => {
